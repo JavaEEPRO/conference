@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
+import java.util.ArrayList;
 
 @Data
 @Entity
@@ -25,5 +25,5 @@ public class Room {
     @ManyToMany
     private Collection<Participant> participants;
 
-    private List<String> chat;
+    private ArrayList<String> chat;
 }
