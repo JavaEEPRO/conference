@@ -2,6 +2,7 @@ package si.inspirited.persistence.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -16,6 +17,8 @@ public class Conference {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NonNull
+    @Column(length = 150)
     private String name;
 
     private LocalDateTime dateTime;
