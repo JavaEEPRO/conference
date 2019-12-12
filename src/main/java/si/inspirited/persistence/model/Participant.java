@@ -34,7 +34,7 @@ public class Participant implements UserDetails {
     private LocalDate birthDay;
 
     @ManyToMany
-    private Collection<Room> conferenceRoom;
+    private Collection<Room> conferenceRooms;
 
     private boolean enabled;
 
@@ -75,5 +75,9 @@ public class Participant implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public boolean isNew() {
+        return this.id == null;
     }
 }

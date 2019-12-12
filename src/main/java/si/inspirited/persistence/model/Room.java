@@ -26,4 +26,11 @@ public class Room {
     private Collection<Participant> participants;
 
     private ArrayList<String> chat;
+
+    @ManyToOne
+    private Conference conference;
+
+    public boolean isNew() {
+        return this.id == null;
+    }
 }

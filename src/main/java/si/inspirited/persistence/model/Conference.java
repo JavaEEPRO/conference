@@ -25,4 +25,8 @@ public class Conference {
 
     @OneToMany
     private Collection<Room> rooms;
+
+    public boolean isNew() {
+        return this.id == null;
+    }
 }

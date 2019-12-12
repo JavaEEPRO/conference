@@ -33,4 +33,8 @@ public class Role implements GrantedAuthority {
         super();
         this.name = name;
     }
+
+    public boolean isNew() {
+        return this.id == null;
+    }
 }
