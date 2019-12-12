@@ -13,8 +13,11 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.RememberMeServices;
+import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
 import org.springframework.security.web.csrf.CsrfFilter;
 import si.inspirited.security.CustomAuthenticationProvider;
+import si.inspirited.security.CustomRememberMeService;
 import si.inspirited.security.CustomUserDetailsService;
 import static org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter.requestContextFilter;
 
@@ -64,7 +67,15 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(false)
                 .logoutSuccessUrl("/logout")
                 .deleteCookies("JSESSIONID")
-                .permitAll();
+                .permitAll()
+                .and()
+                .rememberMe().rememberMeServices(rememberMeServices());
+    }
+
+    @Bean
+    public RememberMeServices rememberMeServices() {
+        CustomRememberMeService rememberMeService = new CustomRememberMeService("theKey", userDetailsService, new InMemoryTokenRepositoryImpl());
+        return rememberMeService;
     }
 
     @Bean
