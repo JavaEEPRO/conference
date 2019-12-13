@@ -50,8 +50,8 @@ public class CustomRememberMeService extends PersistentTokenBasedRememberMeServi
     @Override
     protected Authentication createSuccessfulAuthentication(HttpServletRequest request, UserDetails participant) {
         Participant authenticatedParticipant = new Participant();
-        if (participantRepository.findByLogin(participant.getUsername()).isPresent()) {
-            participantRepository.findByLogin(participant.getUsername()).get();
+        if (participantRepository.findByLogin(participant.getUsername()) != null) {
+            participantRepository.findByLogin(participant.getUsername());
         }
         RememberMeAuthenticationToken authenticationToken = new RememberMeAuthenticationToken(key, authenticatedParticipant, authoritiesMapper.mapAuthorities(participant.getAuthorities()));
         authenticationToken.setDetails(authenticationDetailsSource.buildDetails(request));

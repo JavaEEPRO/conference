@@ -38,11 +38,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (loginAttemptService.isBlocked(ip)) {
             throw new RuntimeException("blocked");
         }
-
         try {
-            final Participant participant = new Participant();
+            Participant participant = new Participant();
             if (participantRepository.findByLogin(login).isPresent()) {
-                participantRepository.findByLogin(login).get();
+                participant = participantRepository.findByLogin(login).get();
             }
             if (participant.isNew()) {
                 throw new UsernameNotFoundException("No user found with username: " + login);

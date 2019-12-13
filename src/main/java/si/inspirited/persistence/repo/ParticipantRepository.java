@@ -8,7 +8,5 @@ import java.util.Optional;
 @Repository
 public interface ParticipantRepository extends PagingAndSortingRepository<Participant, Long> {
 
-    default Optional<Participant> findByLogin(String login) {
-        return Optional.empty();
-    }
+    Optional<Participant> findByLogin(String login);
 }
