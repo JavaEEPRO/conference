@@ -17,8 +17,9 @@ public class CustomAuthenticationProvider extends DaoAuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         Participant participant = new Participant();
-        if (participantRepository.findByLogin(authentication.getName()).isPresent()) {
-            participant = participantRepository.findByLogin(authentication.getName()).get();
+        String login = authentication.getName();
+        if (participantRepository.findByLogin(login).isPresent()) {
+            participant = participantRepository.findByLogin(login).get();
         }
         if ((participant.isNew())) {
             throw new BadCredentialsException("Invalid login or password");
