@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -36,5 +37,19 @@ public class Role implements GrantedAuthority {
 
     public boolean isNew() {
         return this.id == null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role = (Role) o;
+        return id.equals(role.id) &&
+                name.equals(role.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }
