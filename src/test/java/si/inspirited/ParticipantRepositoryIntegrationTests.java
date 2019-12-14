@@ -9,9 +9,6 @@ import si.inspirited.persistence.model.Participant;
 import si.inspirited.persistence.model.Role;
 import si.inspirited.persistence.repo.ParticipantRepository;
 import si.inspirited.persistence.repo.RoleRepository;
-
-import java.util.function.Predicate;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
